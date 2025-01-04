@@ -40,26 +40,16 @@ def final():
     grades = []
     values = []
 
-    def isnumeric(x):
-        try:
-            if float(x):
-                return True
-        except ValueError:
-            return False
-
     while True:
-        grade = input('Put your grade or type "done": ').strip()
-        
-        # Check if the user wants to stop
-        if grade.lower() == 'done':
+       
+        # when final grades are calculated
+        if sum(values) == 1:
             break
-
+        
+        grade = input('Put your grade: ').strip()
+        
         # Validate and convert the grade input
         try:
-            if isnumeric(grade) == False:
-                print('Only numbers allowed')
-                continue
-
             grade = float(grade)
             if not 0 <= grade <= 100:
                 print('Invalid grade. Must be between 0 and 100. Try again.')
@@ -74,10 +64,6 @@ def final():
         value = input('How much is it worth? (e.g., if 20%, type 0.2): ').strip()
         
         try:
-            if isnumeric(value) == False:
-                print('Only numbers allowed')
-                continue
-
             value = float(value)
             if not 0 < value <= 1:
                 print('Invalid value. Must be between 0 and 1. Try again.')
@@ -90,7 +76,7 @@ def final():
 
     # Calculate the weighted grade
     if grades and values:
-        final_grade = sum(a * b for a, b in zip(grades, values))
+        final_grade = sum(a * b for a,b in zip(grades, values))
         print(f'\nYour final weighted grade is: {round(final_grade, 2)}%')
     else:
         print('\nNo grades or values were entered.')

@@ -1,17 +1,18 @@
-import os
+
 
 # Initialize the list and counter
 todo = []
 count = 0
 
+
+print('Welcome to the to-do list')
+print("When all tasks are added, type 'done'")
+print('type delete to remove a task')
+print()
+
+
 # Function to display the to-do list
 def display_list():
-    os.system('clear' if os.name == 'posix' else 'cls')
-    
-    # Welcome message
-    print('Welcome to the to-do list')
-    print("When all tasks are added, type 'done'")
-    print()
     
     print('To-Do List:')
     
@@ -37,10 +38,16 @@ while True:
         elif task == '':
             print('You did not enter anything')
         
+        elif task.lower() == 'delete':
+            delete = int(input('What task do you want to delete'))
+            del todo[1-delete]
+
+        
         else:
             todo.append(f'Task{count}. {task}')  # Add the task to the list
 
-         except ValueError:
+
+    except ValueError:
         print('Error occurred, please try again.')
         
 display_list()
